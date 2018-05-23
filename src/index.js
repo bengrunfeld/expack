@@ -2,4 +2,4 @@ import logMessage from './js/logger'
 import './css/style.css'
 
 // Log message to console
-logMessage('Welcome to Expack!')
+logMessage('A warm welcome to Expack!')
