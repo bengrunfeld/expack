@@ -4,4 +4,5 @@ import './css/style.css'
 // Log message to console
 logMessage('Its finished!!')
 
-module.hot.accept() // eslint-disable-line no-undef
+if (module.hot)       // eslint-disable-line no-undef
+  module.hot.accept() // eslint-disable-line no-undef
