@@ -14,7 +14,7 @@ Expack can be deployed directly to Google App Engine Flex with the command `npm 
 
 ## Installation & Usage
 
-    npm clone ...
+    git clone https://github.com/bengrunfeld/expack.git
     cd expack
     npm install
     
@@ -27,7 +27,7 @@ Expack can be deployed directly to Google App Engine Flex with the command `npm 
 ### For testing
 
     npm test                // runs test
-    npm coverage            // generates a coverage report
+    npm run coverage        // generates a coverage report
 
 ## Security
 
