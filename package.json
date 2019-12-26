@@ -1,53 +1,64 @@
 {
-  "name": "expack",
-  "version": "1.0.0",
-  "description": "Expack is the bare-bones Express and Webpack boilerplate with ES6+ babel transpilation, ESLint linting, Hot Module Reloading, and Jest test framework enabled.",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
-    "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
-    "start": "node ./dist/server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "engines": {
-    "node": ">=4.3.2"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    "name": "expack",
+    "version": "1.0.0",
+    "description": "Expack is the bare-bones Express and Webpack boilerplate with ES6+ babel transpilation, ESLint linting, Hot Module Reloading, and Jest test framework enabled.",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "coverage": "jest --coverage",
+        "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
+        "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
+        "start": "node ./dist/server/server.js"
+    },
+    "keywords": [],
+    "author": "Michel Drescher (UOXF) <michel.drescher@oerc.ox.ac.uk>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/micheldrescher/cw-project-radar.git"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "winston": "^3.2.1"
+    },
+    "engines": {
+        "node": ">=13.0.0"
+    },
+    "jest": {
+        "moduleNameMapper": {
+            "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+            "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+        }
+    },
+    "devDependencies": {
+        "@babel/core": "^7.7.7",
+        "@babel/preset-env": "^7.7.7",
+        "acorn": "^7.1.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^9.0.0",
+        "babel-jest": "^24.9.0",
+        "babel-loader": "^8.0.6",
+        "css-loader": "^3.4.0",
+        "eslint": "^6.0.0",
+        "eslint-config-prettier": "^6.8.0",
+        "eslint-loader": "^2.2.1",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-prettier": "^3.1.2",
+        "file-loader": "^1.1.11",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^3.2.0",
+        "jest": "^24.9.0",
+        "mini-css-extract-plugin": "^0.4.5",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "prettier": "1.19.1",
+        "style-loader": "^0.21.0",
+        "terser-webpack-plugin": "^2.3.1",
+        "url-loader": "^1.1.2",
+        "webpack": "^4.41.4",
+        "webpack-cli": "^3.3.10",
+        "webpack-dev-middleware": "^3.7.2",
+        "webpack-hot-middleware": "^2.25.0",
+        "webpack-node-externals": "^1.7.2"
     }
-  },
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
-    "babel-jest": "^24.8.0",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.2.0",
-    "eslint": "^4.19.1",
-    "eslint-loader": "^2.2.1",
-    "file-loader": "^1.1.11",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.8.0",
-    "mini-css-extract-plugin": "^0.4.5",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.3.0",
-    "url-loader": "^1.1.2",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-middleware": "^3.7.0",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpack-node-externals": "^1.7.2"
-  }
 }

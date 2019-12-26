@@ -1,34 +1,61 @@
-# Expack - Express and Webpack Boilerplate
+# Forked Expack
 
-Expack is the bare-bones Express and Webpack boilerplate with ES6+ babel transpilation, ESLint linting, Hot Module Reloading, and Jest test framework enabled.
+This version of expack closely follows Ben Grunfeld's expack boilerplate but incorporates a number of changes as follows.
 
-Expack has two build modes: Development and Production.
+All documentation for expack also applies here. Please visit https://github.com/bengrunfeld/expack for the original repository.
 
-When you run `npm run buildDev`, Javascript, HTML, and CSS files are unminified and not uglified, meaning that you can easily inspect them in Chrome Dev Tools. Hot Module Reloading is enabled via `webpack-dev-middleware` and `webpack-hot-middleware`. 
+## Changes in this fork
 
-When you run `npm run buildProd`, Javascript, HTML, and CSS files are all minified and uglified, and images are encoded as Base64 directly into your CSS file, which results in less calls to the server for image files.
+### 1. Layout of dist
 
-## Google App Engine Flex Deployment
+For a better separation of server and client code the dist folder will split the built files into two sub-directories:
 
-Expack can be deployed directly to Google App Engine Flex with the command `npm run deploy`. **IMPORTANT:** Currently `app.yaml` is configured to use minimal resources to save on cost, which is great for development but terrible for production. Please review and update `app.yaml` to suit your own needs.
+    dist/
+        client/
+        server/
 
-## Installation & Usage
+This allows to better ringfence serving static files (i.e. the client) and protect serving the server file(s).
 
-    git clone https://github.com/bengrunfeld/expack.git
-    cd expack
-    npm install
-    
-    npm run buildDev        // for development
-        // OR
-    npm run buildProd
-    
-    npm start               // navigate to localhost:8080 for local dev
+### 2. Changes src folder layout
 
-### For testing
+The src folder originally separates only the server from the client code. This makes code leaking and confusion between collaborating developers far easer. I therefore decided to change the layout as follows:
 
-    npm test                // runs test
-    npm run coverage        // generates a coverage report
+    src/
+        client/
+        server/
+        shared/
+        test/
 
-## Security
+I also moved index.js from top-level `src` to `src/client/js` to make it clearer that that is the entrypoit for the client for webpack.
 
-Please ensure that your version of Node and NPM are up to date, and run `npm audit` after installation to ensure that no vulnerabilities exist. If they do, follow the audits instructions on how to resolve them. 
+### 3. Add boilerplate app.js for express routes
+
+I moved setting up the express app into its own module `app.js` where it is easier to setup express routes that are not affected by differences in
+production and development modes (e.g. the difference in how the static client files are served)
+
+### 4. Add support for module 'dotenv'
+
+I added support for dotenv, and a simple confiv.env file to the repository. server-dev.js and server-prod.js already made use of this in the code (when determining the port to listen on). Using dotenv makes this a little bit easier.
+
+### 5. Switch to ES6 import/export
+
+I prefer using `import express from 'express' over the CommonJS style using const/require. It's a preference and it somehow chimes with me much better than the old way.
+
+The only exception is the webpack config files requiring old style module syntax as these are not transpiled.
+
+### 6. Update to ESLint 6
+
+The original repository uses ESLint 4.x. Since I am using a Node.js linting profile (as well as Prettier) I decided to update to ESLint 6.
+
+### 7. Prettier and Node.js lint profile
+
+I am using Prettier, and a Node.js profile for ESLint. Both plugins I use required upgrading to ESLint 6 (see above).
+Feel free to ditch this poart of the changes as they are highly subjective.
+
+## Security vulnerability changes
+
+### serialize-javascript and discontinued uglify-webpack-lugin
+
+The original expack repository has a security vulnerability through using the uglify-webpack-plugin which depends on a vulnerable version of serialise-javascript.
+uglify-webpack-plugin is discontinued, and an alternative should be used: terser-webpack-plugin.
+This updated version of expack-boilerplate makes use of the alternative, removing the vulnerability entirely.
