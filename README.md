@@ -51,3 +51,11 @@ The original repository uses ESLint 4.x. Since I am using a Node.js linting prof
 
 I am using Prettier, and a Node.js profile for ESLint. Both plugins I use required upgrading to ESLint 6 (see above).
 Feel free to ditch this poart of the changes as they are highly subjective.
+
+## Security vulnerability changes
+
+### serialize-javascript and discontinued uglify-webpack-lugin
+
+The original expack repository has a security vulnerability through using the uglify-webpack-plugin which depends on a vulnerable version of serialise-javascript.
+uglify-webpack-plugin is discontinued, and an alternative should be used: terser-webpack-plugin.
+This updated version of expack-boilerplate makes use of the alternative, removing the vulnerability entirely.
