@@ -8,6 +8,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from '../../webpack.dev.config.js'
 
 import app from './app'
+import logger from './util/logger'
 
 const DIST_DIR = path.join(__dirname, '../client/')
 const HTML_FILE = path.join(DIST_DIR, 'index.html')
@@ -39,9 +40,9 @@ app.get('/', (req, res, next) => {
 const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {
-    console.log(`App listening to ${PORT}....`)
-    console.log('Press Ctrl+C to quit.')
+    logger.info(`App listening to ${PORT}....`)
+    logger.info('Press Ctrl+C to quit.')
 
-    console.log('Port =', process.env.PORT)
-    console.log('NODE_ENV =', process.env.NODE_ENV)
+    logger.info(`Port = ${process.env.PORT}`)
+    logger.info(`NODE_ENV = ${process.env.NODE_ENV}`)
 })
