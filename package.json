@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
-    "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
+    "buildDev": "rimraf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
+    "buildProd": "rimraf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js"
   },
   "keywords": [],
@@ -41,6 +41,7 @@
     "jest": "^24.8.0",
     "mini-css-extract-plugin": "^0.4.5",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "rimraf": "^3.0.0",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.3.0",
     "url-loader": "^1.1.2",
