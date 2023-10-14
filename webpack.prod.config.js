@@ -1,8 +1,9 @@
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -18,13 +19,20 @@ module.exports = {
   // Webpack 4 does not have a CSS minifier, although
   // Webpack 5 will likely come with one
   optimization: {
+    minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
+      new TerserPlugin({
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
-      }),
-      new OptimizeCSSAssetsPlugin({})
+        sourceMap: true,
+        extractComments: {
+          condition: /^\**!|@preserve|@license|@cc_on/i,
+          filename: "extracted-comments.js",
+          banner: (licenseFile) => {
+            return `License information can be found in ${licenseFile}`;
+          },
+        }},
+      ),
+      new CssMinimizerPlugin()
     ]
   },
   module: {
@@ -69,6 +77,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
+    }),
+    new ESLintPlugin({
+      emitWarning: true,
+      failOnError: false,
+      failOnWarning: false
+      
     })
   ]
 }
