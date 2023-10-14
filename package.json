@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "buildDev": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
-    "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
+    "buildDev": "rimraf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
+    "buildProd": "rimraf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.prod.config.js",
     "start": "node ./dist/server.js"
   },
   "author": "",
@@ -37,6 +37,7 @@
     "html-webpack-plugin": "^5.5.3",
     "jest": "^29.7.0",
     "mini-css-extract-plugin": "^2.7.6",
+    "rimraf": "^5.0.5",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
     "url-loader": "^4.1.1",
