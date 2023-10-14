@@ -23,7 +23,7 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         parallel: true,
-        sourceMap: true,
+
         extractComments: {
           condition: /^\**!|@preserve|@license|@cc_on/i,
           filename: "extracted-comments.js",
