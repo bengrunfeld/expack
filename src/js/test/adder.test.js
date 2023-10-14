@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import adder from '../adder'
 
 describe('Adder', () => {
